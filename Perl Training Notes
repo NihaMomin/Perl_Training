@@ -1,0 +1,148 @@
+Here /usr/bin/perl is actual the perl interpreter binary. Before you execute your script, be sure to change the mode of the script file and give execution priviledge, generally a setting of 0755 ->
+chmod 0755 hello.pl
+./hello.pl
+---------------------------------------------------------------------------
+perl fine extensions are: .pl or .PL
+---------------------------------------------------------------------------
+variable starts with dollar sign: 
+$var_name
+---------------------------------------------------------------------------
+every statement ends with semi-colon ;
+---------------------------------------------------------------------------
+for commenting a line use #
+
+section comment starts and end with -> 
+=begin
+comments
+=cut
+---------------------------------------------------------------------------
+say() vs print
+say adds newline character in the end by default
+
+'Here' document starts with <<EOF identifier If identifier is quoted, the type of quote you use determines the treatment of the text inside the here docoment, just as in regular quoting. An unquoted identifier works like double quotes.
+
+CODE: 
+
+$a = 10;
+$var = <<"EOF";
+This is the syntax for here document and it will continue
+until it encounters a EOF in the first line.
+This is case of double quote so variable value will be 
+interpolated. For example value of a = $a
+EOF
+print "$var\n";
+
+$var = <<'EOF';
+This is case of single quote so variable value will be 
+interpolated. For example value of a = $a
+EOF
+print "$var\n";
+
+OUTPUT:
+
+This is the syntax for here document and it will continue
+until it encounters a EOF in the first line.
+This is case of double quote so variable value will be
+interpolated. For example value of a = 10
+
+This is case of single quote so variable value will be
+interpolated. For example value of a = $a
+
+
+-- Interpolated string
+In Perl, any string that is built with double quotes (or something meaning double quotes) will be interpolated. That is, any variable or escaped char that appears within the string will be replaced with the value of that variable
+---------------------------------------------------------------------------
+Escaping Character
+
+Perl uses the backslash (\) character to escape any type of character that might interfere with our code
+$result = "This is \"number\"";
+print "$result\n";
+print "\$result\n";
+This is "number"
+$result
+---------------------------------------------------------------------------
+Perl Identifiers:
+
+A Perl identifier is a name used to identify a variable, function, class, module, or other object. A Perl variable name starts with either $, @ or % followed by zero or more letters, underscores, and digits (0 to 9).
+
+Perl does not allow punctuation characters such as @, $, and % within identifiers. Perl is a case sensitive programming language. Thus $Manpower and $manpower are two different identifiers in Perl.
+---------------------------------------------------------------------------
+Data Types:
+
+Perl has three basic data types: scalars, arrays of scalars, and hashes of scalars, also known as associative arrays.
+
+- Scalar
+
+Scalars are simple variables. They are preceded by a dollar sign ($). A scalar is either a number, a string, or a reference. A reference is actually an address of a variable, which we will see in the upcoming chapters.
+
+$age = 25;             # An integer assignment
+$name = "John Paul";   # A string 
+$salary = 1445.50;     # A floating point
+--------------------------------
+-- Variable Context
+Perl treats same variable differently based on Context, i.e., situation where a variable is being used. 
+@names = ('John Paul', 'Lisa', 'Kumar');
+@copy = @names;
+$size = @names;
+
+print "Given names are : @copy\n";
+print "Number of names are : $size\n";
+Given names are : John Paul Lisa Kumar
+Number of names are : 3
+--------------------------------
+- Arrays
+
+Arrays are ordered lists of scalars that you access with a numeric index, which starts with 0. They are preceded by an "at" sign (@).
+
+@ages = (25, 30, 40);             
+@names = ("John Paul", "Lisa", "Kumar");
+$ages[0] = 25
+
+-- Array functions
+push: Pushes the values of the list onto the end of the array.
+pop: Pops off and returns the last value of the array.
+shift:Shifts the first value of the array off and returns it, shortening the array by 1 and moving everything down.
+unshift: Prepends list to the front of the array, and returns the number of elements in the new array.
+
+@coins = ("Quarter","Dime","Nickel") -> Quarter Dime Nickel
+push(@coins, "Penny") -> Quarter Dime Nickel Penny
+unshift(@coins, "Dollar") -> Dollar Quarter Dime Nickel Penny
+pop(@coins) -> Dollar Quarter Dime Nickel
+shift(@coins) -> Quarter Dime Nickel
+
+-- Array Slicing
+@days = qw/Mon Tue Wed Thu Fri Sat Sun/;
+@weekdays = @days[3,4,5] or @days[3..5] -> Thu Fri Sat
+
+-- Replacing Array Elements
+
+
+--------------------------------
+- Hashes
+
+Hashes are unordered sets of key/value pairs that you access using the keys as subscripts. They are preceded by a percent sign (%).
+
+%data = ('John Paul', 45, 'Lisa', 30, 'Kumar', 40);
+$data{'John Paul'} = 45
+$data{'Lisa'} = 30
+$data{'Kumar'} = 40
+---------------------------------------------------------------------------
+range operation (..)
+@var_10 = (1..10);
+print "@var_10\n";   # Prints number from 1 to 10
+1 2 3 4 5 6 7 8 9 10
+--------------------------------
+@days = qw/Mon Tue Wed Thu Fri Sat Sun/;
+will create a list of 7 elements
+--------------------------------
+@array = (1,2,3);
+$array[50] = 4;
+$size = @array;
+$max_index = $#array;
+print "Size:  $size\n";
+print "Max Index: $max_index\n";
+Size: 51
+Max Index: 50
+--------------------------------
+
+
